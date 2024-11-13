@@ -1,0 +1,23 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+featureGates:
+  "HPAScaleToZero": true
+name: local
+nodes:
+- role: control-plane
+  # Kubernetes version
+  image: kindest/node:v1.30.4
+  # Labels required by charts
+  labels:
+    xxii.io/mongo: true
+    xxii.io/redis: true
+    xxii.io/prometheus: true
+    xxii.io/loki: true
+    xxii.io/nginx: true
+  extraMounts:
+    - hostPath: ./volumes/kind/data/
+      containerPath: /data/
+    - hostPath: ./volumes/kind/var/xxii/
+      containerPath: /var/xxii/
+networking:
+  apiServerPort: 6443

@@ -1,0 +1,8 @@
+directory: charts
+repositories:
+- name: hivemq
+  url: https://hivemq.github.io/helm-charts
+requires:
+- chart: hivemq/hivemq-operator
+  version: 0.11.14
+version: 1
